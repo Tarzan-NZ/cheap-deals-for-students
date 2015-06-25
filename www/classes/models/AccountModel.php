@@ -4,7 +4,7 @@ class AccountModel extends Model {
 
 	public function getAllUsernames() {
 
-		return $this->dbc->query( "SELECT Username FROM users" );
+		return $this->dbc->query( "SELECT Username,Active,Privilege FROM users WHERE Privilege = 'user' " );
 
 	}
 
@@ -53,6 +53,52 @@ class AccountModel extends Model {
 			return false;
 		}
 	}
+
+	public function deleteUser() {
+		
+		// Grab the user currently selected in the dropdown menu
+		$selecteduser = $_POST['user-list'];
+
+		// // Filter
+		// $username = $this->dbc->real_escape_string($username);
+
+		// Prepare the sql to delete the selected user
+		$sql = "UPDATE users SET Active = 'disabled' WHERE Username = '$selecteduser' ";
+
+		// Run the SQL
+		$this->dbc->query( $sql );
+
+		$disableUserMessage = 'User disabled !';
+
+	}
+
+	public function addNewStaff($imageName){
+		
+		// Extract the data from the form and filter it
+		$firstName 	= $this->dbc->real_escape_string($_POST['first-name']);
+		$lastName 	= $this->dbc->real_escape_string($_POST['last-name']);
+		$jobTitle 	= $this->dbc->real_escape_string($_POST['job-title']);
+		$bio 		= $this->dbc->real_escape_string($_POST['bio']);
+		$image 		= $this->dbc->real_escape_string($imageName);
+
+		// Delete once image upload is working
+		// $image = 'http://placehold.it/320x180';
+
+		// Prep SQL query
+		$sql = "INSERT INTO Staff VALUES (NULL, '$firstName', '$lastName', '$image','$bio','$jobTitle')";
+
+		// Run the query
+		$this->dbc->query($sql);
+
+		// Make sure the insert worked
+		if ($this->dbc->affected_rows > 0 ) {
+			return true; // Success
+		}
+	}
+
+
+
+
 
 }
 

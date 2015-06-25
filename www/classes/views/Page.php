@@ -29,4 +29,14 @@ class Page {
 
 	}
 
+	public function foundationAlert($message, $type) {
+		
+		if ($message = '') {return;}
+
+		echo '<small class="alert-box'.$type.'">';
+		echo $message;
+		echo '</small>';
+		
+	}
+
 }

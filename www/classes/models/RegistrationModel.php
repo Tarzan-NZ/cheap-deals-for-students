@@ -65,10 +65,12 @@ class RegistrationModel extends Model {
 
 		// Prepare SQL for insert
 		$sql = "INSERT INTO users 
-				VALUES (NULL, '$username', '$hashedPassword', '$email', 'user', CURRENT_TIMESTAMP)";
+				VALUES (NULL, '$username', '$email', '$hashedPassword', 'user', CURRENT_TIMESTAMP, 'enabled')";
 
 		// Run the SQL
 		$this->dbc->query($sql);
+
+		// Validate the account creation
 
 		// Log user in by saving their details into the session
 		$_SESSION['username']  = $username;
