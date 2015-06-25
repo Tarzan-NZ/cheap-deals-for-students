@@ -86,7 +86,8 @@
 				</div>
 				<div class="cloumns medium-6">
 				<label for="bio">Bio: </label>
-					<textarea name="bio" id="bio" rows="4" cols="20"><?php echo $this->bioError; ?></textarea>
+					<textarea name="bio" id="bio" rows="4" cols="20"><?php echo $this->bio; ?></textarea>
+					<?php errorMessage($this->bioError); ?>
 				</div>
 				<div class="columns medium-6">
 				<label for="profile-image">Profile Image: </label>

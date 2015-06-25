@@ -166,7 +166,7 @@ class AccountPage extends Page {
 
 		if ( strlen($this->bio > 200) ) {
 			$this->bioError = 'Bio is limited to 200 characters. You have '.(strlen($this->bio) - 200);
-		} elseif (!preg_match('/^[\w\s\-\.]{2,200}$/', $this->bio)) {
+		} elseif (!preg_match('/^[\w\s\-\.\,]{2,200}$/', $this->bio)) {
 			$this->bioError = 'Bio can only include letters, hyphens & fullstops';
 		}
 
