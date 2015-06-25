@@ -49,7 +49,9 @@ class LoginPage extends Page {
 
 			// If this code runs then the user was not redirected
 			// therefore they did not have correct login credentials
-			$this->loginError = 'Username or password incorrect';
+			if ($this->model->loginError != '') {
+				$this->loginError = $this->model->loginError;
+			}
 
 		}
 
